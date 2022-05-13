@@ -35,6 +35,13 @@ func New(logger *zap.Logger, stockRepo repository.Stock) Handler {
 func (h Handler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	h.Logger.Info("request received", zap.String("method", r.Method), zap.String("path", r.URL.Path))
 	w.Header().Set("Content-Type", "application/json")
+	w.Header().Set("Access-Control-Allow-Origin", "*")
+	w.Header().Set("Access-Control-Allow-Headers", "*")
+
+	if r.Method == http.MethodOptions {
+		w.WriteHeader(http.StatusNoContent)
+		return
+	}
 
 	switch r.URL.Path {
 	case "/etl":
