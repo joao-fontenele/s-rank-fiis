@@ -48,8 +48,8 @@ func (s Stock) Find(f model.Filter) (stocks []model.Stock, err error) {
 
 	tx := s.Conn.Table(stockTableName).
 		Where(strings.Join(fields, " AND "), values...).
-		Find(&stocks).
-		Order("s_ranking ASC")
+		Order("s_ranking ASC").
+		Find(&stocks)
 
 	err = tx.Error
 	return
