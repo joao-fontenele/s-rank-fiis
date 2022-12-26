@@ -10,6 +10,8 @@ Source of the data about FIIs: https://www.fundsexplorer.com.br/ranking
 - GET http://localhost:9999/etl: requests the source of metrics for FIIs, calculates s-rank, and saves to DB
 - POST http://localhost:9999/stocks: returns stocks sorted by ascending s-rank (better first)
   - you can apply some filters for the returned stocks using this sample body: `{ "positivePBRatio": true, "greaterThanDailyLiquidityInCurrency": 200000 }`
+- POST http://localhost:9999/summary: returns a summary of the current portfolio, and adds in information of current top s rank position of the stocks. This is useful for deciding on rebalancing the portfolio
+  - you can apply some filters for the returned stocks using this sample body: `{ "positivePBRatio": true, "greaterThanDailyLiquidityInCurrency": 120000 }`
 
 ## Run Server
 
