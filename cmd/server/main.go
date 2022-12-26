@@ -28,8 +28,9 @@ func main() {
 	}
 
 	r := repository.Stock{Conn: dbGorm}
+	rOps := repository.Operation{Conn: dbGorm}
 	h := http.NewServeMux()
-	h.Handle("/", handler.New(logger, r))
+	h.Handle("/", handler.New(logger, r, rOps))
 
 	logger.Info("listening on port :9999", zap.String("version", Version))
 	logger.Fatal("error starting server", zap.Error(http.ListenAndServe(":9999", h)))

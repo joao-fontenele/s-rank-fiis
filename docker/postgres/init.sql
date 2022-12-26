@@ -25,6 +25,15 @@ CREATE TABLE stocks (
 CREATE INDEX idx_created_at_s_rank_ranking ON stocks(created_at, s_ranking);
 CREATE INDEX idx_daily_liquidity_in_currency ON stocks(daily_liquidity_in_currency);
 
+CREATE TABLE operations (
+    id            SERIAL  PRIMARY KEY,
+    code          VARCHAR(7) NOT NULL,
+    price         FLOAT      NOT NULL,
+    amount        INTEGER    NOT NULL,
+    purchase_date TIMESTAMP  NOT NULL
+);
+CREATE INDEX idx_code ON operations(code);
+
 GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO usr;
 
 \connect ranks_test;
@@ -46,5 +55,14 @@ CREATE TABLE stocks (
 );
 CREATE INDEX idx_created_at_s_rank_ranking ON stocks(created_at, s_ranking);
 CREATE INDEX idx_daily_liquidity_in_currency ON stocks(daily_liquidity_in_currency);
+
+CREATE TABLE operations (
+    id            SERIAL  PRIMARY KEY,
+    code          VARCHAR(7) NOT NULL,
+    price         FLOAT      NOT NULL,
+    amount        INTEGER    NOT NULL,
+    purchase_date TIMESTAMP  NOT NULL
+);
+CREATE INDEX idx_code ON operations(code);
 
 GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO usr;
